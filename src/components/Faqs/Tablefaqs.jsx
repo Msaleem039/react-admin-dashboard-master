@@ -11,7 +11,7 @@ const userData = [
 	{ id: 5, name: "Charlie Wilson", email: "charlie@example.com", role: "Moderator", status: "Active" },
 ];
 
-const UsersTable = () => {
+const Tablefaqs = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredUsers, setFilteredUsers] = useState(userData);
 	const location = useLocation();
@@ -25,10 +25,8 @@ const UsersTable = () => {
 	  );
 	  setFilteredUsers(filtered);
 	};
-  
 	// Check if the current route is 'adduser'
 	const isAddInstructorPage = location.pathname.includes("adduser");
-  
 	return (
 		<motion.div
 		className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
@@ -59,14 +57,13 @@ const UsersTable = () => {
 				</div>
 	  
 				{/* Add Instructor Button */}
-				<Link to='adduser'>
+				<Link to='faqs'>
 				  <button className='bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300'>
-					Add Instructor
+					Add Faqs
 				  </button>
 				</Link>
 			  </div>
 			</div>
-	  
 			{/* Table */}
 			<div className='overflow-x-auto'>
 			  <table className='min-w-full divide-y divide-gray-700'>
@@ -154,4 +151,4 @@ const UsersTable = () => {
 	);
   };
   
-  export default UsersTable;
+  export default Tablefaqs;

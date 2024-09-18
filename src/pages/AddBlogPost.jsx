@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddInstructor = () => {
+const AddBlogPost = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -90,4 +90,4 @@ const AddInstructor = () => {
   );
 };
 
-export default AddInstructor;
+export default AddBlogPost;

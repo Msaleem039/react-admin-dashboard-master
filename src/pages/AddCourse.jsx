@@ -1,24 +1,23 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AddInstructor = () => {
+const AddCourse = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [Description, setDescription] = useState("");
+  const [number, setNumber] = useState("");
   const [profilePic, setProfilePic] = useState(null);
   const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log("Instructor Added:", { name, email, phone, profilePic });
+    console.log("Instructor Added:", { name, Description, number, profilePic });
     navigate("/users"); // Redirect to instructors page after successful form submission
   };
-
   return (
     <div className='p-6 bg-gray-800 rounded-lg shadow-md max-w-lg mx-auto'>
       <h2 className='text-3xl font-semibold text-gray-100 mb-6 text-center'>
-        Add Instructor
+        Add Course
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className='mb-4'>
@@ -31,22 +30,22 @@ const AddInstructor = () => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className='w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-            placeholder="Enter instructor's name"
+            placeholder="Enter course's name"
             required
           />
         </div>
 
         <div className='mb-4'>
           <label className='block text-gray-400 mb-2' htmlFor='email'>
-            Email
+            Description
           </label>
           <input
-            type='email'
-            id='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type='text'
+            id='text'
+            value={Description}
+            onChange={(e) => setDescription(e.target.value)}
             className='w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-            placeholder="Enter email address"
+            placeholder="Enter Description"
             required
           />
         </div>
@@ -56,12 +55,12 @@ const AddInstructor = () => {
             Phone Number
           </label>
           <input
-            type='tel'
+            type='Number'
             id='phone'
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
             className='w-full px-4 py-2 bg-gray-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-            placeholder="Enter phone number"
+            placeholder="Enter Date"
             required
           />
         </div>
@@ -83,11 +82,11 @@ const AddInstructor = () => {
           type='submit'
           className='w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:outline-none'
         >
-          Add Instructor
+          Add Course
         </button>
       </form>
     </div>
   );
 };
 
-export default AddInstructor;
+export default AddCourse;

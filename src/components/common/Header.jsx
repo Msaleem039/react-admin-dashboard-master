@@ -1,16 +1,22 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router-dom'
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { useState } from 'react';
 
 const navigation = [
   { name: 'PNY Training', href: '#', current: true },
-]
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Header() {
+  const [offcanvasVisible, setOffcanvasVisible] = useState(false);
+
+  const toggleOffcanvas = () => {
+    setOffcanvasVisible(!offcanvasVisible);
+  };
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
@@ -32,9 +38,7 @@ export default function Header() {
               <button
                 type="button"
                 className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-                data-twe-offcanvas-toggle
-                aria-controls="offcanvasExample"
-                href="#offcanvasExample"
+                onClick={toggleOffcanvas}
               >
                 <span className="sr-only">View notifications</span>
                 <BellIcon aria-hidden="true" className="h-6 w-6" />
@@ -54,7 +58,7 @@ export default function Header() {
                 </div>
                 <MenuItems
                   transition
-                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                  className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none"
                 >
                   <MenuItem>
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -99,11 +103,12 @@ export default function Header() {
 
       {/* Offcanvas menu */}
       <div
-        className="invisible fixed bottom-0 left-0 top-0 z-[1045] flex w-96 max-w-full -translate-x-full flex-col border-none bg-white bg-clip-padding text-neutral-700 shadow-sm outline-none transition duration-300 ease-in-out data-[twe-offcanvas-show]:transform-none dark:bg-body-dark dark:text-white"
+        className={`fixed bottom-0 right-0 top-0 z-[1045] flex w-96 max-w-full flex-col border-none bg-white shadow-sm outline-none transition duration-300 ease-in-out ${
+          offcanvasVisible ? 'translate-x-0' : 'translate-x-full'
+        }`}
         tabIndex="-1"
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
-        data-twe-offcanvas-init
       >
         <div className="flex items-center justify-between p-4">
           <h5 className="mb-0 font-semibold leading-normal" id="offcanvasExampleLabel">
@@ -111,9 +116,8 @@ export default function Header() {
           </h5>
           <button
             type="button"
-            className="box-content rounded-none border-none text-neutral-500 hover:text-neutral-800 hover:no-underline focus:text-neutral-800 focus:opacity-100 focus:shadow-none focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus:text-neutral-300"
-            data-twe-offcanvas-dismiss
-            aria-label="Close"
+            className="box-content rounded-none border-none text-neutral-500 hover:text-neutral-800 focus:outline-none"
+            onClick={toggleOffcanvas}
           >
             <span className="[&>svg]:h-6 [&>svg]:w-6">
               <svg
@@ -133,9 +137,12 @@ export default function Header() {
           </button>
         </div>
         <div className="flex-grow overflow-y-auto p-4">
-          <p>Some notification text...</p>
+          <p className='text-black'>Some notification text...</p>
+          <p className='text-black text-2xl'>
+            Imran Kashif sab 
+          </p>
         </div>
       </div>
     </>
-  )
+  );
 }

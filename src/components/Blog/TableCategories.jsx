@@ -11,7 +11,7 @@ const userData = [
 	{ id: 5, name: "Charlie Wilson", email: "charlie@example.com", role: "Moderator", status: "Active" },
 ];
 
-const UsersTable = () => {
+const TableCategories = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredUsers, setFilteredUsers] = useState(userData);
 	const location = useLocation();
@@ -89,7 +89,6 @@ const UsersTable = () => {
 					</th>
 				  </tr>
 				</thead>
-	  
 				<tbody className='divide-y divide-gray-700'>
 				  {filteredUsers.map((user) => (
 					<motion.tr
@@ -154,4 +153,4 @@ const UsersTable = () => {
 	);
   };
   
-  export default UsersTable;
+  export default TableCategories;

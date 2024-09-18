@@ -11,7 +11,7 @@ const userData = [
 	{ id: 5, name: "Charlie Wilson", email: "charlie@example.com", role: "Moderator", status: "Active" },
 ];
 
-const UsersTable = () => {
+const TableFlyers = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredUsers, setFilteredUsers] = useState(userData);
 	const location = useLocation();
@@ -154,4 +154,4 @@ const UsersTable = () => {
 	);
   };
   
-  export default UsersTable;
+  export default TableFlyers;

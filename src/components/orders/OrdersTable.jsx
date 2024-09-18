@@ -12,7 +12,6 @@ const orderData = [
 	{ id: "ORD007", customer: "David Lee", total: 528.9, status: "Shipped", date: "2023-07-07" },
 	{ id: "ORD008", customer: "Grace Taylor", total: 189.6, status: "Delivered", date: "2023-07-08" },
 ];
-
 const OrdersTable = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredOrders, setFilteredOrders] = useState(orderData);

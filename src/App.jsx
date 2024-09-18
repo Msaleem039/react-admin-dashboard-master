@@ -11,6 +11,11 @@ import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
 import AddInstructor from "./pages/AddInstructor";
 import Courses from "./pages/Courses";
+import Faqtable from "./components/Faqcategories/Faqtable";
+import AddCourse from "./pages/AddCourse";
+import CourseCateg from "./pages/CourseCateg";
+import AddCate from "./pages/AddCate";
+import Blog from "./components/Blog/Blog";
 
 
 function App() {
@@ -25,13 +30,20 @@ function App() {
 			<Sidebar />
 			<Routes>
 				<Route path='/' element={<OverviewPage />} />
-				<Route path='/products' element={<ProductsPage />} />
+				<Route path='/products' element={<ProductsPage/>}/>
 				<Route path='/users' element={<UsersPage />}>
           {/* Nested route for adding a new instructor */}
           <Route path='adduser' element={<AddInstructor />} />
         </Route>
 				<Route path='/sales' element={<SalesPage />}/>
-				<Route path='/courses' element={<Courses />}/>
+				<Route path='/faqs' element={<Faqtable/>}/>
+				<Route path='/courses' element={<Courses />}>
+				<Route path='adduser' element={<AddCourse/>} />	
+				</Route>
+				<Route path='/course-categories' element={<CourseCateg/>}>
+					<Route path='addcategory' element={<AddCate/>} />
+				</Route>
+				<Route path='/blog' element={<Blog/>} />
 				<Route path='/orders' element={<OrdersPage />} />
 				<Route path='/analytics' element={<AnalyticsPage />} />
 				<Route path='/settings' element={<SettingsPage />} />
