@@ -21,7 +21,7 @@ const SIDEBAR_ITEMS = [
 		color: "#EC4899",
 		href: "#",
 		dropdown: [
-			{ name: "addcategory", icon: BiCategory, color: "#8B5CF6", href: "/course-categories" },
+			{ name: "Category", icon: BiCategory, color: "#8B5CF6", href: "/course-categories" },
 			{ name: "Courses", icon: BookAIcon, color: "#EC4899", href: "/courses" },
 			
 		]

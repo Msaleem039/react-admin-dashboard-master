@@ -58,7 +58,7 @@ const Blog = () => {
 
   return (
     <motion.div
-      className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
+      className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
@@ -114,32 +114,45 @@ const Blog = () => {
         </div>
       )}
 
-      {/* Blog List in Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {blogs.map((blog) => (
-          <div key={blog.id} className="bg-gray-700 p-4 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold text-gray-100 mb-2">{blog.title}</h3>
-            <p className="text-gray-400 mb-2">{blog.date}</p>
-            <p className="text-gray-300">{blog.description}</p>
-            <div className="mt-4">
-              <button
-                onClick={() => handleEdit(blog.id)}
-                className="text-indigo-400 hover:text-indigo-300 mr-4"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(blog.id)}
-                className="text-red-400 hover:text-red-300"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
+      {/* Blog List in Scrollable Table */}
+      <div className="max-h-96 overflow-y-auto">
+        <table className="min-w-full text-left">
+          <thead className="sticky top-0 bg-gray-700">
+            <tr>
+              <th className="px-4 py-2 text-gray-100">Title</th>
+              <th className="px-4 py-2 text-gray-100">Date</th>
+              <th className="px-4 py-2 text-gray-100">Description</th>
+              <th className="px-4 py-2 text-gray-100">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {blogs.map((blog) => (
+              <tr key={blog.id} className="bg-gray-600">
+                <td className="px-4 py-2 text-gray-200">{blog.title}</td>
+                <td className="px-4 py-2 text-gray-200">{blog.date}</td>
+                <td className="px-4 py-2 text-gray-200">{blog.description}</td>
+                <td className="px-4 py-2 text-gray-200">
+                  <button
+                    onClick={() => handleEdit(blog.id)}
+                    className="text-indigo-400 hover:text-indigo-300 mr-4"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(blog.id)}
+                    className="text-red-400 hover:text-red-300"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </motion.div>
   );
 };
 
 export default Blog;
+

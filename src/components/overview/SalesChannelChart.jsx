@@ -9,7 +9,6 @@ const SALES_CHANNEL_DATA = [
 	{ name: "Marketplace", value: 29800 },
 	{ name: "Social Media", value: 18700 },
 ];
-
 const SalesChannelChart = () => {
 	return (
 		<motion.div
@@ -18,7 +17,7 @@ const SalesChannelChart = () => {
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.4 }}
 		>
-			<h2 className='text-lg font-medium mb-4 text-gray-100'>Sales by Channel</h2>
+			<h2 className='text-lg font-medium mb-4 text-gray-100'>Channel</h2>
 
 			<div className='h-80'>
 				<ResponsiveContainer>

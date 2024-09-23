@@ -15,7 +15,6 @@ const UsersTable = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredUsers, setFilteredUsers] = useState(userData);
 	const location = useLocation();
-  
 	const handleSearch = (e) => {
 	  const term = e.target.value.toLowerCase();
 	  setSearchTerm(term);
@@ -25,7 +24,6 @@ const UsersTable = () => {
 	  );
 	  setFilteredUsers(filtered);
 	};
-  
 	// Check if the current route is 'adduser'
 	const isAddInstructorPage = location.pathname.includes("adduser");
   

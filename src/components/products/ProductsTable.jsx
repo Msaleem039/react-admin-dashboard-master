@@ -9,7 +9,6 @@ const PRODUCT_DATA = [
 	{ id: 4, name: "Management", category: "Management", price: 29.99, stock: 210, sales: 950 },
 	{ id: 5, name: "Home", category: "Home", price: 79.99, stock: 78, sales: 720 },
 ];
-
 const ProductsTable = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredProducts, setFilteredProducts] = useState(PRODUCT_DATA);
