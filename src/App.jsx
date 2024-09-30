@@ -3,8 +3,6 @@ import Sidebar from "./components/common/Sidebar";
 import OverviewPage from "./pages/OverviewPage";
 
 import UsersPage from "./pages/UsersPage";
-
-
 import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
 import AddInstructor from "./pages/AddInstructor";
