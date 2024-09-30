@@ -47,7 +47,7 @@ const CourseCategories = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer">Course Categories</h2>
             <div className="flex items-center space-x-4">
-              <div className="relative">
+              <div className="relative hidden md:block">
                 <input
                   type="text"
                   placeholder="Search categories..."
@@ -58,7 +58,7 @@ const CourseCategories = () => {
                 <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
               </div>
               <Link to="addcategory">
-                <button className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                <button className="bg-blue-600 hover:bg-blue-500 hidden md:block text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
                   Add Category
                 </button>
               </Link>

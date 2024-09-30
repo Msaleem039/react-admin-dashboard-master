@@ -3,10 +3,6 @@ import { motion } from "framer-motion";
 
 import Header from "../components/common/Header";
 import StatCard from "../components/common/StatCard";
-import UserGrowthChart from "../components/users/UserGrowthChart";
-import UserActivityHeatmap from "../components/users/UserActivityHeatmap";
-import UserDemographicsChart from "../components/users/UserDemographicsChart";
-import Course from "../components/courses/Course";
 import CourseCategories from "../components/courses/CourseCategories";
 
 const userStats = {

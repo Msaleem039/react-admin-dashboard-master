@@ -18,7 +18,7 @@ const AddBlogPost = () => {
   return (
     <div className='p-6 bg-gray-800 rounded-lg shadow-md max-w-lg mx-auto'>
       <h2 className='text-3xl font-semibold text-gray-100 mb-6 text-center'>
-        Add Instructor
+        Add Blog Post
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className='mb-4'>

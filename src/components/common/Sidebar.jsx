@@ -53,7 +53,7 @@ const SIDEBAR_ITEMS = [
 			{ name: "SP-C Blog Post", icon: MdFolderSpecial, color: "#F59E0B", href: "/sp-c-blog-post" }
 		]
 	},
-	{ name: "E-Flyers Categ", icon: MdFolderSpecial, color: "#F59E0B", href: "/e-flyers-categ" },
+	{ name: "E-Flyers", icon: MdFolderSpecial, color: "#F59E0B", href: "/eflayer" },
 	{ name: "Faqs", icon: FaQq, color: "#F59E0B", href: "/faqs" },
 	{ name: "Analytics", icon: TrendingUp, color: "#3B82F6", href: "/analytics" },
 	{ name: "Settings", icon: Settings, color: "#6EE7B7", href: "/settings" },

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { useNavigate, Outlet, Link } from "react-router-dom";
 
 const initialCategories = [
   { id: 1, name: "React", status: "Active" },
@@ -11,10 +11,8 @@ const initialCategories = [
 ];
 
 const BlogCategories = () => {
-  
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredCategories, setFilteredCategories] = useState(initialCategories);
-
   const handleSearch = (e) => {
     const term = e.target.value.toLowerCase();
     setSearchTerm(term);
@@ -24,6 +22,9 @@ const BlogCategories = () => {
     );
     setFilteredCategories(filtered);
   };
+
+  // Handler for adding blog category
+
 
   return (
     <motion.div
@@ -48,13 +49,14 @@ const BlogCategories = () => {
             />
             <Search className='absolute left-3 top-2.5 text-gray-400' size={18} />
           </div>
-         <Link to='/addblogcategory'>
-         <button
+      <Link to='/addblogcate'>
+      <button
             className='bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300'
+       // Trigger navigation on click
           >
-            Add Category
+            Add Blog Category
           </button>
-         </Link>
+      </Link>
         </div>
       </div>
 
@@ -110,7 +112,7 @@ const BlogCategories = () => {
           </tbody>
         </table>
       </div>
-      {/* Outlet is required for nested routing */}
+     <Outlet/> {/* Outlet is required for nested routing */}
     
     </motion.div>
   );

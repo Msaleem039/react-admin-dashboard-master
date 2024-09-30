@@ -12,13 +12,13 @@ const AddFlyers = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log("Instructor Added:", { name, email, phone, profilePic });
-    navigate("/users"); // Redirect to instructors page after successful form submission
+    navigate("/eflayer"); // Redirect to instructors page after successful form submission
   };
 
   return (
     <div className='p-6 bg-gray-800 rounded-lg shadow-md max-w-lg mx-auto'>
       <h2 className='text-3xl font-semibold text-gray-100 mb-6 text-center'>
-        Add Instructor
+        Add Eflayer
       </h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className='mb-4'>
@@ -83,7 +83,7 @@ const AddFlyers = () => {
           type='submit'
           className='w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 focus:outline-none'
         >
-          Add Instructor
+          Add Eflayer
         </button>
       </form>
     </div>

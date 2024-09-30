@@ -10,7 +10,6 @@ const userActivityData = [
 	{ name: "Sat", "0-4": 70, "4-8": 90, "8-12": 110, "12-16": 130, "16-20": 150, "20-24": 80 },
 	{ name: "Sun", "0-4": 80, "4-8": 100, "8-12": 120, "12-16": 140, "16-20": 160, "20-24": 90 },
 ];
-
 const UserActivityHeatmap = () => {
 	return (
 		<motion.div

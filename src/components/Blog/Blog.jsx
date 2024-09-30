@@ -1,158 +1,148 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Search } from "lucide-react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
-const initialBlogData = [
-  {
-    id: 1,
-    title: "Understanding React Hooks",
-    date: "07/01/2024",
-    description:
-      "React Hooks are functions that let you use state and other React features without writing a class. In this article, we will explore the basics of Hooks and how to use them effectively in modern React applications.",
-  },
-  {
-    id: 2,
-    title: "Introduction to Tailwind CSS",
-    date: "07/02/2024",
-    description:
-      "Tailwind CSS is a utility-first CSS framework that allows developers to build custom designs without having to write traditional CSS. This blog covers how to get started with Tailwind and create beautiful interfaces.",
-  },
-  {
-    id: 3,
-    title: "Building Scalable Applications with MERN Stack",
-    date: "07/03/2024",
-    description:
-      "Learn how to build full-stack applications using MongoDB, Express, React, and Node.js. This guide covers key architectural patterns for creating scalable and maintainable applications.",
-  },
+// Define userData outside the component
+const userData = [
+  { id: 1, name: "John Doe", email: "john@example.com", role: "Customer", status: "Active" },
+  { id: 2, name: "Jane Smith", email: "jane@example.com", role: "Admin", status: "Active" },
+  { id: 3, name: "Bob Johnson", email: "bob@example.com", role: "Customer", status: "Inactive" },
+  { id: 4, name: "Alice Brown", email: "alice@example.com", role: "Customer", status: "Active" },
+  { id: 5, name: "Charlie Wilson", email: "charlie@example.com", role: "Moderator", status: "Active" },
 ];
 
 const Blog = () => {
-  const [blogs, setBlogs] = useState(initialBlogData);
-  const [newBlog, setNewBlog] = useState({ title: "", date: "", description: "" });
-  const [isEditing, setIsEditing] = useState(null);
-  const [showForm, setShowForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUsers, setFilteredUsers] = useState(userData);
+  const location = useLocation();
 
-  const handleCreate = () => {
-    const newId = blogs.length ? blogs[blogs.length - 1].id + 1 : 1;
-    setBlogs([...blogs, { ...newBlog, id: newId }]);
-    setNewBlog({ title: "", date: "", description: "" });
-    setShowForm(false); // Hide form after creating
+  const handleSearch = (e) => {
+    const term = e.target.value.toLowerCase();
+    setSearchTerm(term);
+    const filtered = userData.filter(
+      (user) =>
+        user.name.toLowerCase().includes(term) ||
+        user.email.toLowerCase().includes(term)
+    );
+    setFilteredUsers(filtered);
   };
 
-  const handleEdit = (id) => {
-    const blogToEdit = blogs.find((blog) => blog.id === id);
-    setNewBlog(blogToEdit);
-    setIsEditing(id);
-    setShowForm(true); // Show form for editing
-  };
-
-  const handleUpdate = () => {
-    setBlogs(blogs.map((blog) => (blog.id === isEditing ? newBlog : blog)));
-    setNewBlog({ title: "", date: "", description: "" });
-    setIsEditing(null);
-    setShowForm(false); // Hide form after update
-  };
-
-  const handleDelete = (id) => {
-    setBlogs(blogs.filter((blog) => blog.id !== id));
-  };
+  const isAddBlogPage = location.pathname.includes("addblog");
 
   return (
     <motion.div
-      className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6"
+      className="w-full bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.2 }}
     >
-      <h2 className="text-2xl font-semibold text-gray-100 mb-4">Latest Blog Posts</h2>
+      {!isAddBlogPage && (
+        <>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-gray-100 cursor-pointer">
+              Courses
+            </h2>
+            <div className="flex items-center space-x-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search users..."
+                  className="bg-gray-700 text-white placeholder-gray-400 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={searchTerm}
+                  onChange={handleSearch}
+                />
+                <Search className="absolute left-3 top-2.5 text-gray-400" size={18} />
+              </div>
+              <Link to="addblog">
+                <button className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                  Add Blog
+                </button>
+              </Link>
+            </div>
+          </div>
 
-      {/* Add Blog Button */}
-      <button
-        onClick={() => setShowForm(!showForm)}
-        className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg mb-4"
-      >
-        {showForm ? "Close Blog Form" : "Add New Blog"}
-      </button>
-
-      {/* Blog Form (Create or Edit) */}
-      {showForm && (
-        <div className="mb-6">
-          <input
-            type="text"
-            placeholder="Blog Title"
-            className="bg-gray-700 text-white placeholder-gray-400 rounded-lg px-4 py-2 mb-2 w-full"
-            value={newBlog.title}
-            onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Blog Date"
-            className="bg-gray-700 text-white placeholder-gray-400 rounded-lg px-4 py-2 mb-2 w-full"
-            value={newBlog.date}
-            onChange={(e) => setNewBlog({ ...newBlog, date: e.target.value })}
-          />
-          <textarea
-            placeholder="Blog Description"
-            className="bg-gray-700 text-white placeholder-gray-400 rounded-lg px-4 py-2 mb-4 w-full"
-            value={newBlog.description}
-            onChange={(e) => setNewBlog({ ...newBlog, description: e.target.value })}
-          />
-          {isEditing ? (
-            <button
-              onClick={handleUpdate}
-              className="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold py-2 px-4 rounded-lg mr-2"
-            >
-              Update Blog
-            </button>
-          ) : (
-            <button
-              onClick={handleCreate}
-              className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg mr-2"
-            >
-              Create Blog
-            </button>
-          )}
-        </div>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-700">
+              <thead>
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Name
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Email
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Role
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-700">
+                {filteredUsers.map((user) => (
+                  <motion.tr
+                    key={user.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0 h-10 w-10">
+                          <div className="h-10 w-10 rounded-full bg-gradient-to-r from-purple-400 to-blue-500 flex items-center justify-center text-white font-semibold">
+                            {user.name.charAt(0)}
+                          </div>
+                        </div>
+                        <div className="ml-4">
+                          <div className="text-sm font-medium text-gray-100">
+                            {user.name}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-300">{user.email}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-800 text-blue-100">
+                        {user.role}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+                          user.status === 'Active'
+                            ? 'bg-green-800 text-green-100'
+                            : 'bg-red-800 text-red-100'
+                        }`}
+                      >
+                        {user.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                      <button className="text-indigo-400 hover:text-indigo-300 mr-2">
+                        Edit
+                      </button>
+                      <button className="text-red-400 hover:text-red-300">
+                        Delete
+                      </button>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
-      {/* Blog List in Scrollable Table */}
-      <div className="max-h-96 overflow-y-auto">
-        <table className="min-w-full text-left">
-          <thead className="sticky top-0 bg-gray-700">
-            <tr>
-              <th className="px-4 py-2 text-gray-100">Title</th>
-              <th className="px-4 py-2 text-gray-100">Date</th>
-              <th className="px-4 py-2 text-gray-100">Description</th>
-              <th className="px-4 py-2 text-gray-100">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogs.map((blog) => (
-              <tr key={blog.id} className="bg-gray-600">
-                <td className="px-4 py-2 text-gray-200">{blog.title}</td>
-                <td className="px-4 py-2 text-gray-200">{blog.date}</td>
-                <td className="px-4 py-2 text-gray-200">{blog.description}</td>
-                <td className="px-4 py-2 text-gray-200">
-                  <button
-                    onClick={() => handleEdit(blog.id)}
-                    className="text-indigo-400 hover:text-indigo-300 mr-4"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(blog.id)}
-                    className="text-red-400 hover:text-red-300"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <Outlet /> {/* Nested routes will render here */}
     </motion.div>
   );
 };
 
 export default Blog;
-

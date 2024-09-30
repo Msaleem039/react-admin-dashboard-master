@@ -2,7 +2,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-const AddBlogCate = () => {
+const AddBlog = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const onSubmit = async(data) => {
@@ -298,4 +298,4 @@ const AddBlogCate = () => {
   );
 };
 
-export default AddBlogCate;
+export default AddBlog;
