@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search } from "lucide-react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import Header from "../common/Header";
 
 // Define userData outside the component
 const userData = [
@@ -27,11 +28,11 @@ const Blog = () => {
     );
     setFilteredUsers(filtered);
   };
-
   const isAddBlogPage = location.pathname.includes("addblog");
-
   return (
-    <motion.div
+    <div className="flex-1 overflow-auto relative z-10">
+    <Header title="user"/>
+  <motion.div
       className="w-full bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -142,6 +143,8 @@ const Blog = () => {
 
       <Outlet /> {/* Nested routes will render here */}
     </motion.div>
+    </div>
+  
   );
 };
 

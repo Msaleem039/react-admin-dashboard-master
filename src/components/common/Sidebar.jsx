@@ -33,7 +33,6 @@ const SIDEBAR_ITEMS = [
 		href: "#",
 		dropdown: [
 			{ name: "Blog Categories", icon: BiCategory, color: "#8B5CF6", href: "/blog-categories" },
-			{ name: "Blog", icon: BookAIcon, color: "#EC4899", href: "/blog" },
 			{ name: "Blog Post", icon: BookAIcon, color: "#EC4899", href: "/blog-post" }
 		]
 	},
@@ -53,8 +52,17 @@ const SIDEBAR_ITEMS = [
 			{ name: "SP-C Blog Post", icon: MdFolderSpecial, color: "#F59E0B", href: "/sp-c-blog-post" }
 		]
 	},
-	{ name: "E-Flyers", icon: MdFolderSpecial, color: "#F59E0B", href: "/eflayer" },
-	{ name: "Faqs", icon: FaQq, color: "#F59E0B", href: "/faqs" },
+	{ name: "E-Flyers", icon: MdFolderSpecial, color: "#F59E0B", href: "#",
+		dropdown: [
+            { name: "E-Flyers", icon: BiCategory, color: "#8B5CF6", href: "/eflayer" }
+		]
+	 },
+	{ name: "Faqs", icon: FaQq, color: "#F59E0B", href: "#" ,
+		dropdown: [
+            { name: "Faqs", icon: BiCategory, color: "#8B5CF6", href: "/faqs" },
+            { name: "E-Flyers", icon: BookAIcon, color: "#EC4899", href: "#" },
+		]
+	},
 	{ name: "Analytics", icon: TrendingUp, color: "#3B82F6", href: "/analytics" },
 	{ name: "Settings", icon: Settings, color: "#6EE7B7", href: "/settings" },
 ];

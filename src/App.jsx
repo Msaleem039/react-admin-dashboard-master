@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Sidebar from "./components/common/Sidebar";
 import OverviewPage from "./pages/OverviewPage";
-
 import UsersPage from "./pages/UsersPage";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
@@ -22,6 +21,11 @@ import AddFlyers from "./pages/AddFlyers";
 import SPCategories from "./components/SP-C Categories/SPCategories";
 import AddSpcategories from "./components/SP-C Categories/AddSpcategories";
 import AddCategory from "./pages/AddCate";
+import SPCBlogPost from "./components/SP-CBlogPost/SPCBlogPost";
+import Mainspc from "./components/SP-CBlogPost/Mainspc";
+import MainspcCate from "./components/SP-C Categories/MainspcCate";
+import MainEflyer from "./components/Eflyer/MainEflyer";
+import MainFaqs from "./components/Faqs/MainFaqs";
 
 
 function App() {
@@ -42,10 +46,12 @@ function App() {
 					<Route path='adduser' element={<AddInstructor />} />
 				</Route>
 			
-				<Route path='/faqs' element={<Faqtable />} />
+				<Route path='/faqs' element={<MainFaqs/>} />
+
 				<Route path='/courses' element={<Courses />}>
-					<Route path='adduser' element={<AddCourse />} />
+					<Route path='adduser' element={<AddCourse/>} />
 				</Route>
+
 				<Route path='/course-categories' element={<CourseCateg />}>
 					<Route path='addcategory' element={<AddCategory/>} />
 				</Route>
@@ -61,15 +67,15 @@ function App() {
 				<Route path='/blog-post' element={<BlogPost/>}>
 					<Route path='addblogpost' element={<AddBlogPost/>} />
 				</Route>
-				<Route path='/eflayer' element={<Eflayer/>}>
-					<Route path='addeflayer' element={<AddFlyers/>} />
+				<Route path='/eflayer' element={<MainEflyer/>}>
+				
 				</Route>
-               
-				<Route path='/sp-c-categories' element={<SPCategories/>}>
+				<Route path='/addeflayer' element={<AddFlyers/>} />
+				<Route path='/sp-c-categories' element={<MainspcCate/>}>
 				
 				</Route>
 				<Route path='/addspc' element={<AddSpcategories/>} />
-			
+			     <Route path='/sp-c-blog-post' element={<Mainspc/>} />
 				<Route path='/analytics' element={<AnalyticsPage />} />
 				<Route path='/settings' element={<SettingsPage />} />
 			</Routes>

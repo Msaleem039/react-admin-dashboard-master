@@ -11,7 +11,7 @@ const userData = [
 	{ id: 5, name: "Charlie Wilson", email: "charlie@example.com", role: "Moderator", status: "Active" },
 ];
 
-const Eflayer= () => {
+const SPCBlogPost = () => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [filteredUsers, setFilteredUsers] = useState(userData);
 	const location = useLocation();
@@ -31,7 +31,7 @@ const Eflayer= () => {
   
 	return (
 		<motion.div
-		className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl w-full p-6 border border-gray-700'
+		className='bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700'
 		initial={{ opacity: 0, y: 20 }}
 		animate={{ opacity: 1, y: 0 }}
 		transition={{ delay: 0.2 }}
@@ -58,9 +58,9 @@ const Eflayer= () => {
 				</div>
 	  
 				{/* Add Instructor Button */}
-				<Link to='/addeflayer'>
+				<Link to='adduser'>
 				  <button className='bg-blue-600 hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300'>
-					Add Eflayer
+					Add Courses
 				  </button>
 				</Link>
 			  </div>
@@ -146,10 +146,16 @@ const Eflayer= () => {
 		  </>
 		)}
 	  
-
+		{/* Render the Add Instructor form if on the 'adduser' route */}
+		<Outlet />
 	  </motion.div>
 	  
 	);
   };
   
-  export default Eflayer;
+  export default SPCBlogPost;
+
+
+
+
+
